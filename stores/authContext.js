@@ -29,12 +29,12 @@ export  const  AuthContextProvider  =({children})=>{
         //* Closes the modal
         netlifyIdentity.close()
         console.log('login event')
-        toast("Hello World")
+        toast.success("Successfully Logged In")
         })
         netlifyIdentity.on('logout',()=>{
         setUser(null)
         console.log('logout event')
-        toast("Hello World")
+        toast.success("Successfully Logged Out")
         })
         netlifyIdentity.on('init',(user)=>{
         setUser(user)
