@@ -7,7 +7,7 @@ export default function Navbar() {
   //const val= useContext(AuthContext)
   //console.log(val)
   //* Destructuring
-  const {user,login,logout}= useContext(AuthContext)
+  const {user,login,logout,authReady}= useContext(AuthContext)
   console.log(user)
 
 
@@ -16,13 +16,13 @@ export default function Navbar() {
       <nav>
         <Image src="/rupee.png" width={50} height={48} />
         <h1>Gaming Vibes</h1>
-        <ul>
+        {authReady && (<ul>
           <li><Link href="/"><a>Home</a></Link></li>
           <li><Link href="/guides"><a>Guides</a></Link></li>
           {!user && <li onClick={login}  className='btn'>Login/Signup</li>}
           {user&& <li>{user.email}</li>}
           {user && <li onClick={logout}  className='btn'>Log out</li>}
-        </ul>
+        </ul>)}
       </nav>
       <div className="banner">
         <Image src="/banner.png" width={966} height={276} />

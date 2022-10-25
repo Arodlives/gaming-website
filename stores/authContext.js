@@ -20,6 +20,7 @@ const AuthContext  = createContext({
 //? Destructuring children from props  whatever  the component wraps
 export  const  AuthContextProvider  =({children})=>{
     const [user,setUser]=useState(null)
+    const [authReady,setAuthReady]=useState(false)
 
     useEffect(()=>{
         //* Listens for when a  user is logging in
@@ -33,7 +34,14 @@ export  const  AuthContextProvider  =({children})=>{
         setUser(null)
         console.log('logout event')
         })
-         //* Fire a  component when a  function first mounts
+        netlifyIdentity.on('init',(user)=>{
+        setUser(user)
+        setAuthReady(true)
+        console.log('init event')
+        })
+
+
+        //* Fire a  component when a  function first mounts
         //* With  an empty dependency array when it  first mounts  
         //? Init netlify  identity connection 
         netlifyIdentity.init()
@@ -61,7 +69,7 @@ export  const  AuthContextProvider  =({children})=>{
 
     //const context = {user:user,login:login}
     //or
-    const context ={user,login,logout}
+    const context ={user,login,logout,authReady}
 
     return (
         //? Wraps AuthContextProvider to be able to add more logic above
