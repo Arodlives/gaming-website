@@ -10,7 +10,7 @@ export default function Guides() {
   console.log(user.token.access_token)
   useEffect(()=>{
     if(authReady){
-    fetch('/.netlify/functions/guides',user && {
+    fetch('/.netlify/functions/guides', user && {
       headers:{
         Authorization:'Bearer'+user.token.access_token
       }
