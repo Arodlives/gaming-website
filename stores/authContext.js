@@ -1,6 +1,6 @@
 import { createContext, useEffect,useState } from "react";
 import  netlifyIdentity from 'netlify-identity-widget';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 //*Context blue print😀
 const AuthContext  = createContext({
@@ -29,10 +29,12 @@ export  const  AuthContextProvider  =({children})=>{
         //* Closes the modal
         netlifyIdentity.close()
         console.log('login event')
+        toast("Hello World")
         })
         netlifyIdentity.on('logout',()=>{
         setUser(null)
         console.log('logout event')
+        toast("Hello World")
         })
         netlifyIdentity.on('init',(user)=>{
         setUser(user)

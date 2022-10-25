@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useContext } from 'react'
 import AuthContext from '../stores/authContext'
-import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function Navbar() {
@@ -11,7 +10,6 @@ export default function Navbar() {
   //* Destructuring
   const {user,login,logout,authReady}= useContext(AuthContext)
   console.log(user)
-  const notify = () => toast.success('Your Account Has Successfully Registered.');
 
 
   return (
@@ -23,9 +21,9 @@ export default function Navbar() {
         <ul>
           <li><Link href="/"><a>Home</a></Link></li>
           <li><Link href="/guides"><a>Guides</a></Link></li>
-          {!user && <li onClick={login-notify}  className='btn'>Login/Signup</li>}
+          {!user && <li onClick={login}  className='btn'>Login/Signup</li>}
           {user&& <li>{user.email}</li>}
-          {user && <li onClick={logout-notify}  className='btn'>Log out</li>}
+          {user && <li onClick={logout}  className='btn'>Log out</li>}
         </ul>
         )} 
       </nav>
